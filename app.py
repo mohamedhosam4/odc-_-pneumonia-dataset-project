@@ -2,11 +2,19 @@ import streamlit as st
 import numpy as np
 import tensorflow as tf
 from PIL import Image, ImageOps
+import gdown
+
+# Direct link to the Google Drive file
+url = 'https://drive.google.com/uc?id=1NaEyY4hKFUN6znsWIZoh3LrizB5xr990'
+output = 'Model.keras'
+
+# Download the model from Google Drive using gdown
+gdown.download(url, output, quiet=False)
 
 # Load the trained model
-model = tf.keras.models.load_model(r'D:\ODC\project3\artifacts/Model.keras')
+model = tf.keras.models.load_model(output)
 
-# Upload an X-ray image
+# Upload an X-ray image from the user
 img = st.file_uploader('Upload your X-ray', type=['jpg', 'png', 'jpeg'])
 
 # Check if an image has been uploaded
